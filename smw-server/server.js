@@ -108,12 +108,17 @@ app.get('/toys', async (req, res) => {
 
 app.get('/toys/:id', async (req, res) => {
 
-    const toy = await Toy.find()
+    const toy = await Toy.findOne()
 
-    if (toy[req.params.id] == undefined)
-        res.sendStatus(404)
+    if (req.params.id == toy._id)
+        res.send(toy)
     else
-        res.send(toy[req.params.id])
+        res.sendStatus(404)
+
+    // if (toy[req.params.id] == undefined)
+    //     res.sendStatus(404)
+    // else
+    //     res.send(toy[req.params.id])
 
 })
 
