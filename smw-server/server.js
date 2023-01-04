@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
+const cors = require('cors')
 
 require('dotenv').config()
 const port = process.env.PORT
@@ -9,6 +10,8 @@ const API_URI = process.env.API_URI
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+app.use(cors())
 
 const toyModel = new mongoose.Schema({
     name: String,
