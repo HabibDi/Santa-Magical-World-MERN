@@ -30,7 +30,7 @@ function Toys() {
                         <TableCell>Name</TableCell>
                         <TableCell >Description</TableCell>
                         <TableCell >Price</TableCell>
-                        {/* <TableCell >Category_Id</TableCell> */}
+                        <TableCell >Category_Id</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -43,7 +43,7 @@ function Toys() {
                             </TableCell>
                             <TableCell >{toy.description}</TableCell>
                             <TableCell >{toy.price}</TableCell>
-                            {/* <TableCell >{toy.category_id}</TableCell> */}
+                            <TableCell >{toy.category_id}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

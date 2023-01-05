@@ -106,35 +106,25 @@ app.get('/toys', async (req, res) => {
     res.send(toys)
 })
 
-app.get('/toys/:id', async (req, res) => {
+// app.get('/toys/:id', async (req, res) => {
 
-    const toy = await Toy.findOne()
+//     const toy = await Toy.findOne()
 
-    if (req.params.id == toy._id)
-        res.send(toy)
-    else
-        res.sendStatus(404)
+//     if (toy._id == req.params.id)
+//         res.send(toy)
+//     else
+//         res.sendStatus(404)
 
-    // if (toy[req.params.id] == undefined)
-    //     res.sendStatus(404)
-    // else
-    //     res.send(toy[req.params.id])
-
-})
-
-// app.post('/categories', (req, res) => {
-//     const newCategory = Category.create({ name: req.body.name },
-//         function (err, param) {
-//             if (err) return handleError(err)
-//             else res.send(req.body)
-//         })
 // })
 
-app.post('/toys', (req, res) => {
+app.get('/toys/:id', async (req, res) => {
+    const id = req.params.id
+    const toy = await Toy.findById(id)
+    res.json(toy)
+})
 
-    // const newToy = new Toy(req.body)
-    // newToy.save()
-    // res.send(newToy)
+
+app.post('/toys', (req, res) => {
 
     const newToy = Toy.create(req.body,
         function (err, param) {

@@ -14,16 +14,35 @@ export default function DisplayToy(props) {
     const params = useParams()
     // console.log(params)
 
-    const fetchToy = () => {
+    const fetchToy = async () => {
 
-        fetch(`http://localhost:5000/toys/${params.id}`)
-            .then((response) => response.json())
-            .then((data) => setToy(data))
+        const response = await fetch(`http://localhost:5000/toys/${params.id}`)
+        try {
+            const data = await response.json()
+            setToy(data)
+            console.log(toy)
+        } catch (error) {
+            console.log(error)
+        }
+        // .then((response) => {
+        //     //console.log(response)
+        //     response.json()
+        // })
+        // .then((data) => {
+
+        //     setToy(data)
+        //     console.log(toy)
+        // })
+        // .catch((error) => {
+        //     console.error('Error:', error);
+        // })
+
+        // console.log(params.id)
     }
 
     useEffect(() => {
         fetchToy()
-    }, [])
+    })
 
     return (
         <TableContainer>
@@ -33,7 +52,7 @@ export default function DisplayToy(props) {
                         <TableCell>Name</TableCell>
                         <TableCell >Description</TableCell>
                         <TableCell >Price</TableCell>
-                        {/* <TableCell >Category_Id</TableCell> */}
+                        <TableCell >Category_Id</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -41,7 +60,7 @@ export default function DisplayToy(props) {
                         <TableCell component="th" scope="row"> {toy.name}</TableCell>
                         <TableCell >{toy.description}</TableCell>
                         <TableCell >{toy.price}</TableCell>
-                        {/* <TableCell >{toy.category_id}</TableCell> */}
+                        <TableCell >{toy.category_id}</TableCell>
                     </TableRow>
                 </TableBody>
             </Table>
